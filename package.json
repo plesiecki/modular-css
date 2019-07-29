@@ -51,7 +51,8 @@
     "sirv": "^0.4.2",
     "snapshot-diff": "^0.5.2",
     "sugarss": "^2.0.0",
-    "svelte": "^2.16.1",
+    "svelte": "^3.6.9",
+    "svelte2": "npm:svelte@^2.16.1",
     "watchify": "^3.11.1",
     "webpack": "^4.30.0"
   },
