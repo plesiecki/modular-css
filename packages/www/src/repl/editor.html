@@ -1,52 +1,46 @@
 <CodeMirror ref:codemirror/>
 
 <script>
+// Thin wrapper around the store <-> codemirror communication
 import fs from "fs";
+
+import { onMount } from "svelte";
 
 import store from "./store.js";
 import listen from "./listen.js";
 
-// Thin wrapper around the store <-> codemirror communication
-export default {
-    components : {
-        CodeMirror : "./codemirror.html",
-    },
+import CodeMirror from "./codemirror.html";
 
-    store : () => store,
+export let data = false;
 
-    data : () => ({
-        file : false,
-    }),
+onMount(() => {
+    listen(this.store, "file", ({ file }) => {
+        let content;
 
-    oncreate() {
-        listen(this.store, "file", ({ file }) => {
-            let content;
+        try {
+            content = fs.readFileSync(file, "utf8");
+        } catch(e) {
+            content = "";
+        }
 
-            try {
-                content = fs.readFileSync(file, "utf8");
-            } catch(e) {
-                content = "";
-            }
+        this.refs.codemirror.input({ content });
+    });
+    
+    this.refs.codemirror.on("change", ({ content }) => {
+        const { file } = this.store.get();
 
-            this.refs.codemirror.input({ content });
-        });
-        
-        this.refs.codemirror.on("change", ({ content }) => {
-            const { file } = this.store.get();
+        this.store.update(file, content);
+    });
+    
+    // Mark text in the editor when an error occurs
+    listen(this.store, "error", ({ error }) => {
+        const { file } = this.get();
 
-            this.store.update(file, content);
-        });
-        
-        // Mark text in the editor when an error occurs
-        listen(this.store, "error", ({ error }) => {
-            const { file } = this.get();
+        if(!error || error.file !== file) {
+            return;
+        }
 
-            if(!error || error.file !== file) {
-                return;
-            }
-
-            this.refs.codemirror.error({ error });
-        });
-    },
-};
+        this.refs.codemirror.error({ error });
+    });
+});
 </script>
