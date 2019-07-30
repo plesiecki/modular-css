@@ -140,9 +140,15 @@ module.exports = [
 
             require("rollup-plugin-node-resolve")({
                 mainFields : [
-                    "module",
                     "browser",
+                    "module",
                     "main",
+                ],
+
+                // TODO: this shouldn't be required and breaks actually running the build!
+                // Don't want to resolve svelte, need the runtime imports left alone
+                only : [
+                    /[^(?:svelte)]/,
                 ],
 
                 preferBuiltins : false,

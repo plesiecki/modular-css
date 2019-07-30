@@ -6,7 +6,7 @@
     {/if}
 {:then _}
     <div class="{css.editor}">
-        <textarea ref:textarea></textarea>
+        <textarea this.bind={textarea}></textarea>
     </div>
 {:catch err}
     <div class="{css.loaderror}">Unable to load editor</div>
@@ -26,7 +26,12 @@ const config = {
     mode : "text/css",
 };
 
-let codemirror = false;
+let slow;
+let ticking;
+// $: ticking = setTimeout(() => (slow = true), 100);
+
+let codemirror;
+let textarea;
 
 // TODO: continue porting
 

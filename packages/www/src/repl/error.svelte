@@ -1,7 +1,7 @@
 <link href="./error.css" />
 
-<div class="{$error ? css.erroron : css.error}">
-    <pre>{$error ? $error.toString() : ""}</pre>
+<div class="{$store.error ? css.erroron : css.error}">
+    <pre>{$store.error ? $store.error.toString() : ""}</pre>
 </div>
 
 <script>

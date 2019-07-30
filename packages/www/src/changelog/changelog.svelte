@@ -10,4 +10,6 @@
 import Page from "../page.svelte";
 
 import { content } from "../../../../CHANGELOG.md";
+
+export let styles;
 </script>

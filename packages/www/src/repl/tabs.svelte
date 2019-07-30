@@ -4,20 +4,26 @@
     <button
         class="{css.add}"
         title="Add a new file"
-        on:click="$add()"
+        on:click={() => $store.add()}
     >
         ➕
     </button>
     
     <div class="{css.tabs}">
-        {#each [ ...$files.values() ] as file (file)}
-        <div class="{$file === file ? css.tabon : css.tab}">
-            <button class="{css.file}" on:click="$set({ file })">{file}</button>
-            {#if $files.size > 1}
+        {#each [ ...$store.files.values() ] as file (file)}
+        <div class="{$store.file === file ? css.tabon : css.tab}">
+            <button
+                class="{css.file}"
+                on:click={() => $store.set({ file })}
+            >
+                {file}
+            </button>
+
+            {#if $store.files.size > 1}
                 <button
                     class="{css.remove}"
                     title="Remove {file}"
-                    on:click="$remove(file)"
+                    on:click={() => $store.remove(file)}
                 >
                     ❌
                 </button>
@@ -29,7 +35,7 @@
     <button
         class="{css.clear}"
         title="Remove all files & content"
-        on:click="$reset({ content : `` })"
+        on:click={() => $store.reset({ content : `` })}
     >
         🗑️
     </button>
@@ -38,7 +44,4 @@
 <script>
 import store from "./store.js";
 
-export default {
-    store : () => store,
-};
 </script>

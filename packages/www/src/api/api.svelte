@@ -15,4 +15,6 @@ import Page from "../page.svelte";
 import Sidebar from "../sidebar.svelte";
 
 import { content, tocs } from "./api.md";
+
+export let styles;
 </script>

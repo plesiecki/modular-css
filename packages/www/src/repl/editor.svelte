@@ -1,7 +1,6 @@
-<CodeMirror ref:codemirror/>
+<CodeMirror bind:this={codemirror}/>
 
 <script>
-// Thin wrapper around the store <-> codemirror communication
 import fs from "fs";
 
 import { onMount } from "svelte";
@@ -13,6 +12,8 @@ import CodeMirror from "./codemirror.svelte";
 
 export let data = false;
 
+let codemirror;
+
 onMount(() => {
     listen(this.store, "file", ({ file }) => {
         let content;
@@ -23,10 +24,10 @@ onMount(() => {
             content = "";
         }
 
-        this.refs.codemirror.input({ content });
+        codemirror.input({ content });
     });
     
-    this.refs.codemirror.on("change", ({ content }) => {
+    codemirror.on("change", ({ content }) => {
         const { file } = this.store.get();
 
         this.store.update(file, content);
@@ -40,7 +41,7 @@ onMount(() => {
             return;
         }
 
-        this.refs.codemirror.error({ error });
+        codemirror.error({ error });
     });
 });
 </script>

@@ -1,7 +1,7 @@
 <link href="./output.css" />
 
 <div class="{css.output}">
-    <CodeMirror config={cmconfig} ref:codemirror/>
+    <CodeMirror config={cmconfig} bind:this={codemirror} />
 </div>
 
 <script>
@@ -17,13 +17,15 @@ const cmconfig = {
     readOnly : true,
 };
 
+let codemirror;
+
 onMount(() => {
     // Default to just the header
-    this.refs.codemirror.input({ content : header });
+    codemirror.input({ content : header });
 
     // Then update whenever the store values change
     listen(this.store, [ "css", "compositions" ], ({ css, compositions }) => {
-        this.refs.codemirror.input({
+        codemirror.input({
             content : [
                 header,
                 css,
