@@ -42,6 +42,8 @@
 </div>
 
 <script>
-import store from "./store.js";
+import files from "./stores/files.js";
 
+// TODO: track active file here
+let file;
 </script>
