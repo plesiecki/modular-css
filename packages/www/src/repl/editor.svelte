@@ -9,7 +9,7 @@ import { onMount } from "svelte";
 import store from "./store.js";
 import listen from "./listen.js";
 
-import CodeMirror from "./codemirror.html";
+import CodeMirror from "./codemirror.svelte";
 
 export let data = false;
 

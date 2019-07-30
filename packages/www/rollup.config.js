@@ -43,11 +43,11 @@ module.exports = [
     // CJS Build of home/guide for node generation
     {
         input : {
-            api       : "./src/api/api.html",
-            guide     : "./src/guide/guide.html",
-            home      : "./src/home/home.html",
-            repl      : "./src/repl/index.html",
-            changelog : "./src/changelog/changelog.html",
+            api       : "./src/api/api.svelte",
+            guide     : "./src/guide/guide.svelte",
+            home      : "./src/home/home.svelte",
+            repl      : "./src/repl/index.svelte",
+            changelog : "./src/changelog/changelog.svelte",
         },
 
         // Don't need to bundle any of this, so purposefully exclude it
@@ -119,7 +119,7 @@ module.exports = [
             
             // Including to force the CSS to be split apart so the REPL CSS
             // doesn't duplicate things it doesn't need to
-            page : "./src/page.html",
+            page : "./src/page.svelte",
         },
 
         output : {

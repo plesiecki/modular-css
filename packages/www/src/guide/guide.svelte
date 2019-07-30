@@ -11,8 +11,8 @@
 </Page>
 
 <script>
-import Page from "../page.html";
-import Sidebar from "../sidebar.html";
+import Page from "../page.svelte";
+import Sidebar from "../sidebar.svelte";
 
 import { content, tocs } from "./guide.md";
 </script>

@@ -26,7 +26,7 @@
 </Page>
 
 <script>
-import Page from "../page.html";
+import Page from "../page.svelte";
 
 import { content as intro } from "./intro.md";
 import { content as example } from "./example.md";

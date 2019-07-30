@@ -32,7 +32,7 @@
 </html>
 
 <script>
-import Header from "./header.html";
+import Header from "./header.svelte";
 
 export let title;
 export let styles;

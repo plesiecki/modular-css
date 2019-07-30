@@ -5,11 +5,10 @@
     <Output />
 </div>
 
-
 <script>
 // import store from "./store.js";
 // import listen from "./listen.js";
 
-import Input from "./input.html";
-import Output from "./output.html";
+import Input from "./input.svelte";
+import Output from "./output.svelte";
 </script>

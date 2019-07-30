@@ -1,4 +1,4 @@
-import Repl from "./repl.html";
+import Repl from "./repl.svelte";
 
 new Repl({
     target : document.body,

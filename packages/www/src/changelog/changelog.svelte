@@ -7,7 +7,7 @@
 </Page>
 
 <script>
-import Page from "../page.html";
+import Page from "../page.svelte";
 
 import { content } from "../../../../CHANGELOG.md";
 </script>

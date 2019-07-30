@@ -11,7 +11,7 @@
 <script>
 import store from "./store.js";
 
-import Editor from "./editor.html";
-import Error from "./error.html";
-import Tabs from "./tabs.html";
+import Editor from "./editor.svelte";
+import Error from "./error.svelte";
+import Tabs from "./tabs.svelte";
 </script>
