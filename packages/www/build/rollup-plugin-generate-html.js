@@ -32,6 +32,10 @@ module.exports = ({ bundle : previous }) => ({
     async writeBundle(bundle) {
         const prev = previous();
 
+        if(!prev) {
+            return;
+        }
+
         Object.entries(prev).forEach(([ id, { isEntry, assets = [], imports = [], name }]) => {
             if(!isEntry) {
                 return;
