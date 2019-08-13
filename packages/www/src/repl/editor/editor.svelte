@@ -5,8 +5,11 @@ import fs from "fs";
 
 import { onMount } from "svelte";
 
-import store from "./store.js";
-import listen from "./listen.js";
+// import store from "./store.js";
+// import listen from "./listen.js";
+
+import { update } from "../stores/files.js";
+import file from "../stores/file.js";
 
 import CodeMirror from "./codemirror.svelte";
 
@@ -15,7 +18,7 @@ export let data = false;
 let codemirror;
 
 onMount(() => {
-    listen(this.store, "file", ({ file }) => {
+    file.subscribe((file) => {
         let content;
 
         try {
@@ -28,20 +31,19 @@ onMount(() => {
     });
     
     codemirror.on("change", ({ content }) => {
-        const { file } = this.store.get();
-
-        this.store.update(file, content);
+        update(file, content);
     });
     
     // Mark text in the editor when an error occurs
-    listen(this.store, "error", ({ error }) => {
-        const { file } = this.get();
+    // TODO: subscribe to error store, do stuff
+    // listen(this.store, "error", ({ error }) => {
+    //     const { file } = this.get();
 
-        if(!error || error.file !== file) {
-            return;
-        }
+    //     if(!error || error.file !== file) {
+    //         return;
+    //     }
 
-        codemirror.error({ error });
-    });
+    //     codemirror.error({ error });
+    // });
 });
 </script>

@@ -6,8 +6,8 @@
 </div>
 
 <script>
-// import store from "./store.js";
-// import listen from "./listen.js";
+// Keep file hashes in sync
+import hash from "./hash.js";
 
 import Input from "./input.svelte";
 import Output from "./output.svelte";
